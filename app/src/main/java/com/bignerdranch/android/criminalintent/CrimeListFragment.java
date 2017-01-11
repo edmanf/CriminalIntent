@@ -39,6 +39,7 @@ public class CrimeListFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        updateUI(-1);
     }
 
     @Override
@@ -68,7 +69,8 @@ public class CrimeListFragment extends Fragment {
             mAdapter.notifyDataSetChanged();
         } else {
             Log.d(TAG, "udpate UI " + id);
-            mAdapter.notifyItemChanged(id);
+            //mAdapter.notifyItemChanged(id);
+            mAdapter.notifyDataSetChanged();
         }
     }
 
