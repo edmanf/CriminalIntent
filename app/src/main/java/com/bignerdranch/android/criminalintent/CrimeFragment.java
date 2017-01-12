@@ -21,10 +21,6 @@ import java.util.UUID;
 
 import static android.app.Activity.RESULT_OK;
 
-/**
- * Created by t7500 on 1/2/2017.
- */
-
 public class CrimeFragment extends Fragment {
 
     private static final String ARG_CRIME_ID = "crime_id";
@@ -32,6 +28,8 @@ public class CrimeFragment extends Fragment {
     private static final String ARG_HOLDER_POSITION = "holder_position";
     private static final String EXTRA_CHANGED_CRIME_HOLDER_POSITIONS =
             "com.bignerdranch.android.criminalintent.changed_crime_holder_positions";
+
+    private static final int REQUEST_DATE = 0;
 
 
     private Crime mCrime;
@@ -91,6 +89,9 @@ public class CrimeFragment extends Fragment {
             public void onClick(View v) {
                 FragmentManager manager = getFragmentManager();
                 DatePickerFragment dialog = DatePickerFragment.newInstance(mCrime.getDate());
+
+                // Sets the return target to be this crime fragment
+                dialog.setTargetFragment(CrimeFragment.this, REQUEST_DATE);
                 dialog.show(manager, DIALOG_DATE);
             }
         });
