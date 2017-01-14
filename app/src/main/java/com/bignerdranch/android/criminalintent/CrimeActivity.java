@@ -3,10 +3,11 @@ package com.bignerdranch.android.criminalintent;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 
 import java.util.UUID;
 
-public class CrimeActivity extends SingleFragmentActivity {
+public class CrimeActivity extends AppCompatActivity {
 
     private static final String EXTRA_CRIME_ID =
             "com.bignerdranch.android.criminalintent.crime_id";
