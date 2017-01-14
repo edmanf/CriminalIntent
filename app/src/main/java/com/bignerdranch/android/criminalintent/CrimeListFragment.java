@@ -69,6 +69,7 @@ public class CrimeListFragment extends Fragment {
             mAdapter.notifyDataSetChanged();
         } else {
             Log.d(TAG, "udpate UI " + id);
+            // TODO: Fix this, challenge chapter 10
             //mAdapter.notifyItemChanged(id);
             mAdapter.notifyDataSetChanged();
         }
