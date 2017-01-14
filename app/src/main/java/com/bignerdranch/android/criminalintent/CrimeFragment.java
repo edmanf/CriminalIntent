@@ -1,5 +1,6 @@
 package com.bignerdranch.android.criminalintent;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -122,6 +123,20 @@ public class CrimeFragment extends Fragment {
         if (isCrimeChanged) {
             data.putExtra(EXTRA_CHANGED_CRIME_HOLDER_POSITIONS,
                     getArguments().getInt(ARG_HOLDER_POSITION));
+        }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode != Activity.RESULT_OK) {
+            return;
+        }
+
+        if (requestCode == REQUEST_DATE) {
+            Date date = (Date) data.
+                    getSerializableExtra(DatePickerFragment.EXTRA_DATE);
+            mCrime.setDate(date);
+            mDateButton.setText(mCrime.getDate().toString());
         }
     }
 }
