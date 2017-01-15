@@ -22,7 +22,6 @@ public class CrimeActivity extends AppCompatActivity {
         return intent;
     }
 
-    @Override
     protected Fragment createFragment() {
         UUID crimeId = (UUID) getIntent().getSerializableExtra(EXTRA_CRIME_ID);
         int holderPosition = getIntent().getIntExtra(EXTRA_HOLDER_POSITION, -1);
