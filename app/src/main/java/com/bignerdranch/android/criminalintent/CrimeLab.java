@@ -59,6 +59,17 @@ public class CrimeLab {
         return null;
     }
 
+    public void updateCrime(Crime crime) {
+        String uuidString = crime.getId().toString();
+        ContentValues values = getContentValues(crime);
+
+        // update(table name, data, where clause)
+        // ? treats String as a value, not SQL code
+        mDatabase.update(CrimeTable.NAME, values,
+                CrimeTable.Cols.UUID + " = ?",
+                new String[] { uuidString });
+    }
+
     private static ContentValues getContentValues(Crime crime) {
         /*
         ContentValues are a key-value store class, specifically for SQLite
