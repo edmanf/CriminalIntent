@@ -45,7 +45,10 @@ public class CrimeLab {
     }
 
     public void addCrime(Crime c) {
+        ContentValues values = getContentValues(c);
 
+        // insert(table name, hack thing (leave as null), CoontentValue data)
+        mDatabase.insert(CrimeTable.NAME, null, values);
     }
 
     public List<Crime> getCrimes() {
