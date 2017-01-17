@@ -141,11 +141,13 @@ public class CrimeListFragment extends Fragment {
             mCrimeRecyclerView.setAdapter(mAdapter);
         } else if (id == -1) {
             Log.d(TAG, "update UI -1");
+            mAdapter.setCrimes(crimes)
             mAdapter.notifyDataSetChanged();
         } else {
             Log.d(TAG, "udpate UI " + id);
             // TODO: Fix this, challenge chapter 10
             //mAdapter.notifyItemChanged(id);
+            mAdapter.setCrimes(crimes);
             mAdapter.notifyDataSetChanged();
         }
 
@@ -210,6 +212,10 @@ public class CrimeListFragment extends Fragment {
         @Override
         public int getItemCount() {
             return mCrimes.size();
+        }
+
+        public void setCrimes(List<Crime> crimes) {
+            mCrimes = crimes;
         }
     }
 }
