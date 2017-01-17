@@ -24,6 +24,12 @@ public class CrimeLab {
     private SQLiteDatabase mDatabase;
 
     private CrimeLab(Context context) {
+        /* Applications last longer than activities (duh)
+        Singletons last until the entire application is destroyed
+        Since CrimeLab has a ref to mContext, if its an activity,
+            dead activities won't be garbage collected
+
+         */
         mContext = context.getApplicationContext();
 
         /* getWritableDatabase() does:
