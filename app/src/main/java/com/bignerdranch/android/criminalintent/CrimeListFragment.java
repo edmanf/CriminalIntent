@@ -141,7 +141,7 @@ public class CrimeListFragment extends Fragment {
             mCrimeRecyclerView.setAdapter(mAdapter);
         } else if (id == -1) {
             Log.d(TAG, "update UI -1");
-            mAdapter.setCrimes(crimes)
+            mAdapter.setCrimes(crimes);
             mAdapter.notifyDataSetChanged();
         } else {
             Log.d(TAG, "udpate UI " + id);
