@@ -106,6 +106,12 @@ public class CrimeLab {
                 new String[] { uuidString });
     }
 
+    /**
+     * Returns a ContentValue for a specific crime, which can be used for
+     * writing to a CrimeDb
+     * @param crime The crime that needs to be written
+     * @return The ContentValue that represents the crime.
+     */
     private static ContentValues getContentValues(Crime crime) {
         /*
         ContentValues are a key-value store class, specifically for SQLite
@@ -116,6 +122,7 @@ public class CrimeLab {
         values.put(CrimeTable.Cols.TITLE, crime.getTitle());
         values.put(CrimeTable.Cols.DATE, crime.getDate().getTime());
         values.put(CrimeTable.Cols.SOLVED, crime.isSolved() ? 1 : 0);
+        values.put(CrimeTable.Cols.SUSPECT, crime.getSuspect());
 
         return values;
     }
