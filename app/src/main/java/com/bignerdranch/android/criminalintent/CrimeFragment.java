@@ -3,6 +3,7 @@ package com.bignerdranch.android.criminalintent;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.text.Editable;
@@ -31,6 +32,7 @@ public class CrimeFragment extends Fragment {
             "com.bignerdranch.android.criminalintent.changed_crime_holder_positions";
 
     private static final int REQUEST_DATE = 0;
+    private static final int REQUEST_CONTACT = 1;
 
 
     private Crime mCrime;
@@ -38,6 +40,7 @@ public class CrimeFragment extends Fragment {
     private Button mDateButton;
     private CheckBox mSolvedCheckBox;
     private Button mReportButton;
+    private Button mSuspectButton;
 
     public static CrimeFragment newInstance(UUID crimeId, int holderPosition) {
         Bundle args = new Bundle();
@@ -135,6 +138,26 @@ public class CrimeFragment extends Fragment {
                 startActivity(i);
             }
         });
+
+        /* ACTION_PICK returns a selected item from data
+        ContactsContract defines the database for contact related info
+        Intent(Action, URI) URI is where the data is
+        CONTENT_URI is the URI for the contacts table */
+        final Intent pickContact = new Intent(Intent.ACTION_PICK,
+                ContactsContract.Contacts.CONTENT_URI);
+
+        mSuspectButton = (Button) v.findViewById(R.id.crime_suspect);
+        mSuspectButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivityForResult(pickContact, REQUEST_CONTACT);
+            }
+        });
+
+        // If assigned, will show suspect's name on button
+        if (mCrime.getSuspect() != null) {
+            mSuspectButton.setText(mCrime.getSuspect());
+        }
 
         return v;
     }
