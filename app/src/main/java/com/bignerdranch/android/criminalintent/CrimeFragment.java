@@ -124,10 +124,14 @@ public class CrimeFragment extends Fragment {
                 Intent i = new Intent(Intent.ACTION_SEND); // Define the action
                 i.setType("text/plain"); // set the type to text/plain
                 i.putExtra(Intent.EXTRA_TEXT, getCrimeReport()); // add the text
-
                 // add the subject
                 i.putExtra(Intent.EXTRA_SUBJECT,
                         getString(R.string.crime_report_subject));
+
+                // new intent for a chooser for a target intent
+                // intent param is the intent
+                // string param sets the text on the chooser
+                i = Intent.createChooser(i, getString(R.string.send_report));
                 startActivity(i);
             }
         });
