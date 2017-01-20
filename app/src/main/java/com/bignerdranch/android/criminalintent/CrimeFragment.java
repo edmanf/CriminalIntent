@@ -149,7 +149,7 @@ public class CrimeFragment extends Fragment {
         final Intent pickContact = new Intent(Intent.ACTION_PICK,
                 ContactsContract.Contacts.CONTENT_URI);
         // Dummy category for testing behavior with no suitable activity
-        pickContact.addCategory(Intent.CATEGORY_HOME);
+        //pickContact.addCategory(Intent.CATEGORY_HOME);
 
         mSuspectButton = (Button) v.findViewById(R.id.crime_suspect);
         mSuspectButton.setOnClickListener(new View.OnClickListener() {
