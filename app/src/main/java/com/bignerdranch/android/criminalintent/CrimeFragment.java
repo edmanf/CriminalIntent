@@ -2,6 +2,7 @@ package com.bignerdranch.android.criminalintent;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -161,6 +162,27 @@ public class CrimeFragment extends Fragment {
             mSuspectButton.setText(mCrime.getSuspect());
         }
 
+        /* Trying to launch a pickContact intent without a chooser and
+        * without a suitable activity will crash the app. We want to check
+        * first that there is an app that can handle it.
+        *
+        * PackageManager knows about all the components installed on the
+        * device, including activities.
+        *
+        * Restricting to MATCH_DEFAULT_ONLY means only activities with
+        * CATEGORY_DEFAULT, which means the activity should be considered for
+        * a job. The pickContact intent is the job. Category Default is
+        * automatically set in startActivity(Intent)
+        *
+        * resolveActivity() returns a ResolveInfo, which tells you about the
+        * activities found, or null if none found. In this case, it means there
+        * is no contacts app. */
+        PackageManager packageManager = getActivity().getPackageManager();
+        if (packageManager.resolveActivity(pickContact,
+                PackageManager.MATCH_DEFAULT_ONLY) == null) {
+            mSuspectButton.setEnabled(false);
+        }
+
         return v;
     }
 
@@ -202,7 +224,7 @@ public class CrimeFragment extends Fragment {
             // clause here
             Cursor c = getActivity().getContentResolver()
                     .query(contactUri, queryFields, null, null, null);
-            // The query gets the display name field from the uri
+            // The query returns all display names from the uri
 
             try {
                 // Double-check that you actually got results
