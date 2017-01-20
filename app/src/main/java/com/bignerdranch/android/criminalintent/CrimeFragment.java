@@ -148,6 +148,8 @@ public class CrimeFragment extends Fragment {
         CONTENT_URI is the URI for the contacts table */
         final Intent pickContact = new Intent(Intent.ACTION_PICK,
                 ContactsContract.Contacts.CONTENT_URI);
+        // Dummy category for testing behavior with no suitable activity
+        pickContact.addCategory(Intent.CATEGORY_HOME);
 
         mSuspectButton = (Button) v.findViewById(R.id.crime_suspect);
         mSuspectButton.setOnClickListener(new View.OnClickListener() {
@@ -175,8 +177,8 @@ public class CrimeFragment extends Fragment {
         * automatically set in startActivity(Intent)
         *
         * resolveActivity() returns a ResolveInfo, which tells you about the
-        * activities found, or null if none found. In this case, it means there
-        * is no contacts app. */
+        * best activity found, or null if none found. In this case, it means
+        * there is no contacts app. */
         PackageManager packageManager = getActivity().getPackageManager();
         if (packageManager.resolveActivity(pickContact,
                 PackageManager.MATCH_DEFAULT_ONLY) == null) {
