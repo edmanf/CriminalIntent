@@ -64,4 +64,12 @@ public class Crime {
     public void setSuspect(String suspect) {
         mSuspect = suspect;
     }
+
+    /**
+     * Returns the filename for the photo of the crime.
+     * @return The filename for the photo of the crime.
+     */
+    public String getPhotoFilename() {
+        return "IMG_" + getId().toString() + ".jpg";
+    }
 }
