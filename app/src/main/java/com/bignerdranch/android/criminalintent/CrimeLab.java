@@ -111,6 +111,8 @@ public class CrimeLab {
         if (externalFilesDir == null) {
             return null;
         }
+
+        // Does not create a file.
         return new File(externalFilesDir, crime.getPhotoFilename());
     }
 
