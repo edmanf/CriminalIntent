@@ -4,11 +4,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.Environment;
 
 import com.bignerdranch.android.criminalintent.database.CrimeBaseHelper;
 import com.bignerdranch.android.criminalintent.database.CrimeCursorWrapper;
 import com.bignerdranch.android.criminalintent.database.CrimeDbSchema.CrimeTable;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -93,6 +95,23 @@ public class CrimeLab {
         } finally {
             cursor.close();
         }
+    }
+
+    /**
+     * Returns a file handle for the crime photo.
+     * @param crime The crime associated with the returned file.
+     * @return The file handle for the photo of the crime, or null if there
+     *         isn't external storage on the device.
+     */
+    public File getPhotoFile(Crime crime) {
+        File externalFilesDir = mContext
+                .getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+
+        // Check if the device has external storage available.
+        if (externalFilesDir == null) {
+            return null;
+        }
+        return new File(externalFilesDir, crime.getPhotoFilename());
     }
 
     public void updateCrime(Crime crime) {

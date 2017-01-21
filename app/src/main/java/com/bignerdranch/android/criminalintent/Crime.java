@@ -70,6 +70,7 @@ public class Crime {
      * @return The filename for the photo of the crime.
      */
     public String getPhotoFilename() {
+        // Because CrimeId is unique, filenames will also be unique.
         return "IMG_" + getId().toString() + ".jpg";
     }
 }
