@@ -316,6 +316,11 @@ public class CrimeFragment extends Fragment {
         }
     }
 
+    private void updateCrime() {
+        CrimeLab.get(getActivity()).updateCrime(mCrime);
+        mCallbacks.onCrimeUpdated(mCrime);
+    }
+
     private void updateDate() {
         mDateButton.setText(mCrime.getDate().toString());
     }
