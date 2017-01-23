@@ -283,6 +283,7 @@ public class CrimeFragment extends Fragment {
             Date date = (Date) data.
                     getSerializableExtra(DatePickerFragment.EXTRA_DATE);
             mCrime.setDate(date);
+            updateCrime();
             updateDate();
         } else if (requestCode == REQUEST_CONTACT && data != null) {
             // Uri points to the contact
@@ -315,6 +316,7 @@ public class CrimeFragment extends Fragment {
             }
         } else if (requestCode == REQUEST_PHOTO) {
             updatePhotoView();
+            updateCrime();
         }
     }
 
