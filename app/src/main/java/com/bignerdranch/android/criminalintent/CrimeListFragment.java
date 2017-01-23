@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import java.util.List;
@@ -206,9 +207,8 @@ public class CrimeListFragment extends Fragment {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
 
-            DateFormat df = new DateFormat();
             mDateTextView.setText(
-                    df.format(Crime.DATE_FORMAT_STRING, mCrime.getDate()));
+                    DateFormat.format(Crime.DATE_FORMAT_STRING, mCrime.getDate()));
 
             mSolvedCheckBox.setChecked(mCrime.isSolved());
         }
