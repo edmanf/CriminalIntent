@@ -1,13 +1,31 @@
 package com.bignerdranch.android.criminalintent;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Point;
 
 /**
  * Created by Edman on 1/22/2017.
  */
 
 public class PictureUtils {
+    /**
+     * Returns a scaled bitmap based on the screen size. It will always be
+     * smaller than the screen
+     * @param path The path of the original bitmap
+     * @param activity The activity that the bitmap will go in
+     * @return The scaled bitmap.
+     */
+    public static Bitmap getScaledBitmap(String path, Activity activity) {
+        // get the display size of the device
+        Point size = new Point();
+        activity.getWindowManager().getDefaultDisplay()
+                .getSize(size);
+
+        return getScaledBitmap(path, size.x, size.y);
+    }
+
     /**
      * Returns a scaled bitmap from the bitmap pointed to by the path.
      * @param path The path to the bitmap to be scaled.
