@@ -144,8 +144,7 @@ public class CrimeFragment extends Fragment {
         mDateButton = (Button)v.findViewById(R.id.crime_date);
         DateFormat df = new DateFormat();
         Date date = mCrime.getDate();
-        String formatString = "EEEE, MMM dd, yyyy";
-        mDateButton.setText(df.format(formatString, date));
+        mDateButton.setText(df.format(Crime.DATE_FORMAT_STRING, date));
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

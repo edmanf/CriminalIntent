@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -204,7 +205,11 @@ public class CrimeListFragment extends Fragment {
         public void bindCrime(Crime crime) {
             mCrime = crime;
             mTitleTextView.setText(mCrime.getTitle());
-            mDateTextView.setText(mCrime.getDate().toString());
+
+            DateFormat df = new DateFormat();
+            mDateTextView.setText(
+                    df.format(Crime.DATE_FORMAT_STRING, mCrime.getDate()));
+
             mSolvedCheckBox.setChecked(mCrime.isSolved());
         }
 

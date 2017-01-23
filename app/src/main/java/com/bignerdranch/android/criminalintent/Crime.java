@@ -15,6 +15,8 @@ public class Crime {
     private boolean mSolved;
     private String mSuspect;
 
+    public static final String DATE_FORMAT_STRING = "EEEE, MMM dd, yyyy";
+
     public Crime() {
         // Generate unique identifier
         this(UUID.randomUUID());
