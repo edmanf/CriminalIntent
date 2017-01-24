@@ -20,7 +20,7 @@ import java.util.Date;
  */
 
 public class TimePickerFragment extends DialogFragment {
-
+    // TODO: Make this inherit from a PickerFragment class
     public static final String EXTRA_TIME =
             "com.bignerdranch.android.criminalintent.time";
 
