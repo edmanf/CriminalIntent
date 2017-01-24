@@ -41,6 +41,7 @@ public class CrimeFragment extends Fragment {
 
     private static final String ARG_CRIME_ID = "crime_id";
     private static final String DIALOG_DATE = "DialogDate";
+    private static final String DIALOG_TIME = "DialogTime";
     private static final String ARG_HOLDER_POSITION = "holder_position";
     private static final String EXTRA_CHANGED_CRIME_HOLDER_POSITIONS =
             "com.bignerdranch.android.criminalintent.changed_crime_holder_positions";
@@ -48,12 +49,14 @@ public class CrimeFragment extends Fragment {
     private static final int REQUEST_DATE = 0;
     private static final int REQUEST_CONTACT = 1;
     private static final int REQUEST_PHOTO = 2;
+    private static final int REQUEST_TIME = 3;
 
 
     private Crime mCrime;
     private File mPhotoFile;
     private EditText mTitleField;
     private Button mDateButton;
+    private Button mTimeButton;
     private CheckBox mSolvedCheckBox;
     private Button mReportButton;
     private Button mSuspectButton;
@@ -141,8 +144,9 @@ public class CrimeFragment extends Fragment {
             }
         });
 
-        mDateButton = (Button)v.findViewById(R.id.crime_date);
         Date date = mCrime.getDate();
+
+        mDateButton = (Button)v.findViewById(R.id.crime_date);
         mDateButton.setText(DateFormat.format(Crime.DATE_FORMAT_STRING, date));
         mDateButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,6 +157,20 @@ public class CrimeFragment extends Fragment {
                 // Sets the return target to be this crime fragment
                 dialog.setTargetFragment(CrimeFragment.this, REQUEST_DATE);
                 dialog.show(manager, DIALOG_DATE);
+            }
+        });
+
+        mTimeButton = (Button)v.findViewById(R.id.crime_time);
+        mTimeButton.setText(mCrime.getDate().toString());
+        mTimeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager manager = getFragmentManager();
+                TimePickerFragment dialog = TimePickerFragment
+                        .newInstance(mCrime.getDate());
+
+                dialog.setTargetFragment(CrimeFragment.this, REQUEST_TIME);
+                dialog.show(manager, DIALOG_TIME);
             }
         });
 
