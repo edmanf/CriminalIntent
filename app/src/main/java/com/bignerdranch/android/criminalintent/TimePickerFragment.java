@@ -80,8 +80,16 @@ public class TimePickerFragment extends DialogFragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Date date = new Date();
-                                mTimePicker.getHour();
-                                int minute = mTimePicker.getMinute();
+
+                                int minute = 0;
+                                int hour = 0;
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                                    minute = mTimePicker.getMinute();
+                                    mTimePicker.getHour();
+                                } else {
+                                    minute = mTimePicker.getCurrentMinute();
+                                    hour = mTimePicker.getCurrentHour();
+                                }
                             }
                         })
                 .create();

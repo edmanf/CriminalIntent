@@ -24,8 +24,4 @@ public class CrimeDbSchema {
             public static final String SUSPECT = "suspect";
         }
     }
-
-
-
-
 }
